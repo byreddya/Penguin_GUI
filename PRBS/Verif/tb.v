@@ -1,19 +1,19 @@
-// Code your testbench here
-// or browse Examples
 `timescale 1ns / 1ps
+
 module tb_prng;
 
     // Inputs to the Device Under Test (DUT)
     reg clk;
     reg reset;
-
+  reg [6:0] seed;
     // Output from the DUT
-    wire [31:0] random_number;
+  wire [7:0] random_number;
 
     // Instantiate the Device Under Test (DUT)
     prng uut (
         .clk(clk),
         .reset(reset),
+        .seed (seed),
         .random_number(random_number)
     );
 
@@ -28,7 +28,7 @@ module tb_prng;
       $dumpfile("dump.vcd"); $dumpvars;  
       clk = 0;
         reset = 0;
-
+		seed = 7'd2;
         // Apply reset
         reset = 1;  // Apply reset to initialize the state
         #10;
